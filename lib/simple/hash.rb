@@ -1,10 +1,11 @@
 require_relative 'hash_with_indifferent_access'
+require_relative 'hash_serializer'
 
 module Simple
 end
 
 class Simple::Hash < Simple::HashWithIndifferentAccess
-  VERSION = "1.1.0"
+  VERSION = "1.1.1"
 
   def method_missing(method_name, *args, &block)
     if keys.map(&:to_s).include?(method_name.to_s) && args.empty? && block.nil?
