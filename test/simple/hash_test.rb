@@ -82,8 +82,15 @@ class TestSimpleHash < Minitest::Test
   it { assert_raises_message('Did you mean?  d') { @simple_hash.b[0].c.dd } }
 
   # to_json
-  it { require 'json'; assert_equal('{"a":1}', Simple::Hash[a: 1].to_json) }
-  it { require 'json'; assert_equal('{"a":{"b":2}}', Simple::Hash[a: { b: 2 }].to_json) }
+  it do
+    require 'json'
+    assert_equal('{"a":1}', Simple::Hash[a: 1].to_json)
+  end
+
+  it do
+    require 'json'
+    assert_equal('{"a":{"b":2}}', Simple::Hash[a: { b: 2 }].to_json)
+  end
 
   # can't modify deep keys
   it { assert_raises { @simple_hash.b.first.c.merge!(d: 5) } }
