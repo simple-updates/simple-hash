@@ -1,15 +1,15 @@
-# Simple::Lazy
+# Simple::Hash
 
-lazily load objects
+typically make JSON into object with accessors
 
 ## installation
 
-    $ gem install simple-lazy
+    $ gem install simple-hash
 
 **or**
 
 ```ruby
-gem 'simple-lazy'
+gem 'simple-hash'
 ```
 
     $ bundle
@@ -17,13 +17,17 @@ gem 'simple-lazy'
 ## usage
 
 ```ruby
-user = Simple::Lazy.new(1) { |id| User.find(id) } # #<Lazy @value=1 cached?=false>
-user.value # => 1
-user.cached? # => false
-user.username # => "elonmusk"
-user.tweets.count # => 7419
-user.value # => 1
-user.cached? # => true
-user.inspect # => #<Lazy @value=1 cached?=false>
-user.to_s # => "@elonmusk"
+user = SimpleHash.new(name: "localhostdotdev", writing?: true)
+user.name # => "localhostdotdev"
+user.writing? # => true
+user[:name] # => "localhostdotdev"
+user["name"] # => "localhostdotdev"
+user.namme # => NoMethodError, did you mean? name
+user.try(:nammmes) # => nil
+user.keys # => [:name, :writing?]
+user.values # => ["localhostdotdev", true]
+
+# what about that?
+user = SimpleHash[emails: [{ domain: "localhost.dev" }]]
+user.emails.first.domain # "localhost.dev"
 ```
