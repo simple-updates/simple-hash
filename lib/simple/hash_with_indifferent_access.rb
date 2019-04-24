@@ -5,6 +5,8 @@ require "active_support/core_ext/hash/except"
 module Simple
 end
 
+# same as ActiveSupport::HashWithIndifferentAccess except it does deep value conversion
+# https://github.com/rails/rails/blob/master/activesupport/lib/active_support/hash_with_indifferent_access.rb
 class Simple::HashWithIndifferentAccess < Hash
   def extractable_options?
     true
