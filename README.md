@@ -31,3 +31,5 @@ user.values # => ["localhostdotdev", true]
 user = SimpleHash[emails: [{ domain: "localhost.dev" }]]
 user.emails.first.domain # "localhost.dev"
 ```
+
+todo: look into `delete_missing_to` and `SimpleDelegator`
